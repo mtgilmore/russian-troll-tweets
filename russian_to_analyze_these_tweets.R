@@ -12,9 +12,18 @@ time_stamp <- as.POSIXct(time_stamp, format="%m/%d/%Y %H:%M", tz="GMT")
 
 hist(time_stamp, breaks="days", freq=TRUE)
 
-#right = data.frame()
-#for (i in 1:length(tweets[,1])) {
-#  if (tweets["account_type",i] = "Right") {
-#    append(right, tweets[i,])
-#  }
-#}
+right <- setNames(data.frame(matrix(ncol = 15, nrow = 0)),
+                  c("external_author_id", "author", "content", "region", "language", "publish_date", "harvested_date",
+                    "following", "followers", "updates", "post_type", "account_type", "new_june_2018", "retweet", "account_category"))
+
+for (i in 1:50) {
+  print(tweets[i,15])
+  if (!is.na(tweets[i, 15])) {
+    if (tweets[i, 15] == "RightTroll") {
+      rowtemp <- tweets[i,]
+      rbind(right, rowtemp)
+    }
+  }
+}
+
+# length(tweets[,1])
