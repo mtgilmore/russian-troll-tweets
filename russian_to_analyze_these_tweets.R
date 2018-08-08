@@ -1,6 +1,7 @@
 tweets <- read.csv('GitHub/russian-troll-tweets/IRAhandle_tweets_1.csv')
 
-for (i in 2:9) {
+for (i in 2:9)
+{
   string <- paste0("GitHub/russian-troll-tweets/IRAhandle_tweets_", i, ".csv")
   temp <- read.csv(string)
   tweets <- rbind(tweets, temp)
@@ -16,14 +17,13 @@ right <- setNames(data.frame(matrix(ncol = 15, nrow = 0)),
                   c("external_author_id", "author", "content", "region", "language", "publish_date", "harvested_date",
                     "following", "followers", "updates", "post_type", "account_type", "new_june_2018", "retweet", "account_category"))
 
-for (i in 1:50) {
-  print(tweets[i,15])
-  if (!is.na(tweets[i, 15])) {
-    if (tweets[i, 15] == "RightTroll") {
-      rowtemp <- tweets[i,]
-      rbind(right, rowtemp)
-    }
+for (i in 1:50)
+{
+  
+  if (tweets[i, 15] == "RightTroll")
+  {
+    rowtemp <- tweets[i,]
+    right <- rbind(right, rowtemp)
   }
-}
 
-# length(tweets[,1])
+}
